@@ -1,5 +1,5 @@
 import { resolveFiltersWithOptions } from '../../resolvers/filterResolver';
-import { Collection, Resolvers } from '../../type-defs';
+import { Collection, Resolvers } from '../../generated-types/type-defs';
 import { ContextValue } from '../../types';
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
