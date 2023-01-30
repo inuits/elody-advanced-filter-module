@@ -1,31 +1,20 @@
-import {
-  resolveEntityFilters,
-  resolveMediafileFilters,
-  resolveSourceOptions,
-} from '../../resolvers/filterResolver';
-import { collectieOptions, typeOptions } from '../../sources/filters';
-import { Resolvers } from '../../type-defs';
+import { resolveFiltersWithOptions } from '../../resolvers/filterResolver';
+import { Collection, Resolvers } from '../../type-defs';
 import { ContextValue } from '../../types';
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   Query: {
     advancedFilters: async (_source, { choice }, { dataSources }) => {
       if (choice === 'mediaFileFilters') {
-        return await resolveMediafileFilters(dataSources);
+        return await resolveFiltersWithOptions(
+          dataSources,
+          Collection.Mediafiles
+        );
       } else {
-        return await resolveEntityFilters(dataSources);
-      }
-    },
-    FilterOptions: async (_source, { key }, { dataSources }) => {
-      switch (key) {
-        case 'museum' || 'source':
-          return await resolveSourceOptions(dataSources);
-        case 'getty':
-          return collectieOptions;
-        case 'type':
-          return typeOptions;
-        default:
-          return null;
+        return await resolveFiltersWithOptions(
+          dataSources,
+          Collection.Entities
+        );
       }
     },
   },
