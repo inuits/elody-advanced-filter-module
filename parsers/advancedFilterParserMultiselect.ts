@@ -20,6 +20,7 @@ export const setadvancedFilterParserMultiselect: filterParser = (
     )
     .forEach((filterinput: FilterInput) => {
       filterOutput.push({
+        key: filterinput!.key,
         type: filterinput!.type,
         value: filterinput!.multiSelectInput?.value as string | string[],
         item_types: [filterinput!.key],
