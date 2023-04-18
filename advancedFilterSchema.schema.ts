@@ -7,10 +7,11 @@ export const advancedFilterSchema = gql`
   }
 
   enum advancedFilterTypes {
-    tekst
-    multiselect
-    checklist
-    minmax
+    id
+    selection
+    date
+    boolean
+    text
   }
 
   type advancedFilter {
