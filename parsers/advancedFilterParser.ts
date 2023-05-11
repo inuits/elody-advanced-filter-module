@@ -21,7 +21,7 @@ export type filterParser = (
 };
 
 const PARSERS: filterParser[] = [
-  setAdvancedFilterTypeParser,
+  // setAdvancedFilterTypeParser,
   setadvancedFilterParserMultiselect,
   setAdvancedFilterParserText,
   setAdvancedFilterParserMinMax,
