@@ -5,17 +5,16 @@ import { ContextValue } from "base-graphql";
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   Query: {
     advancedFilters: async (_source, { choice }, { dataSources }) => {
+      let filters;
       if (choice === "mediaFileFilters") {
-        return await resolveFiltersWithOptions(
-          dataSources,
-          Collection.Mediafiles
-        );
+        filters = await resolveFiltersWithOptions(dataSources, Collection.Mediafiles);
       } else {
-        return await resolveFiltersWithOptions(
-          dataSources,
-          Collection.Entities
-        );
+        filters = await resolveFiltersWithOptions(dataSources, Collection.Entities);
       }
+      return filters.map(filter => ({
+        ...filter, 
+        options: filter.options !== undefined ? filter.options : [] 
+      }))
     },
   },
 };
