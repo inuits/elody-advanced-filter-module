@@ -1,6 +1,6 @@
 import { FilterInput } from '../../../generated-types/type-defs';
 import { filterParser, parsedInput } from './advancedFilterParser';
-import { isMultiselectInputWithValue } from './advancedFilterParserMultiselect';
+import { isMultiselectInputWithValue } from './advancedFilterParserSelection';
 
 const FILTER_TYPE = 'type';
 

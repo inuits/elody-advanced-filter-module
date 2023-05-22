@@ -1,12 +1,12 @@
 import { FilterInput } from '../../../generated-types/type-defs';
 import { filterParser, parsedInput } from './advancedFilterParser';
 
-const FILTER_TYPE = 'MultiSelectInput';
+const FILTER_TYPE = 'SelectionInput';
 
-export const isMultiselectInputWithValue = (filterinput: FilterInput) =>
+export const isSelectionInputWithValue = (filterinput: FilterInput) =>
   filterinput?.type === FILTER_TYPE &&
-  filterinput!.multiSelectInput?.value &&
-  filterinput!.multiSelectInput?.value?.length > 0
+  filterinput!.selectionInput?.value &&
+  filterinput!.selectionInput?.value?.length > 0
     ? true
     : false;
 
@@ -16,19 +16,19 @@ export const setadvancedFilterParserMultiselect: filterParser = (
 ) => {
   filterInput
     .filter((filterInputElement: FilterInput) =>
-      isMultiselectInputWithValue(filterInputElement)
+      isSelectionInputWithValue(filterInputElement)
     )
     .forEach((filterinput: FilterInput) => {
       filterOutput.push({
         key: filterinput!.key,
         type: "SelectionInput",
-        value: filterinput.multiSelectInput?.value as string | string[],
+        value: filterinput.selectionInput?.value as string | string[],
       });
     });
   return {
     otherFilters: filterInput.filter(
       (filterInputElement: FilterInput) =>
-        !isMultiselectInputWithValue(filterInputElement)
+        !isSelectionInputWithValue(filterInputElement)
     ),
     filterOutput,
   };

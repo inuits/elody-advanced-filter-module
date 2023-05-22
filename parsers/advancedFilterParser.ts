@@ -1,6 +1,6 @@
 import { FilterInput, Maybe } from '../../../generated-types/type-defs';
 import { setAdvancedFilterParserMinMax } from './advancedFilterParserMinMax';
-import { setadvancedFilterParserMultiselect } from './advancedFilterParserMultiselect';
+import { setadvancedFilterParserSelection } from './advancedFilterParserSelection';
 import { setAdvancedFilterParserText } from './advancedFilterParserText';
 import { setAdvancedFilterTypeParser } from './advancedFilterParserType';
 export interface parsedInput {
@@ -22,7 +22,7 @@ export type filterParser = (
 
 const PARSERS: filterParser[] = [
   // setAdvancedFilterTypeParser,
-  setadvancedFilterParserMultiselect,
+  setadvancedFilterParserSelection,
   setAdvancedFilterParserText,
   setAdvancedFilterParserMinMax,
 ];
