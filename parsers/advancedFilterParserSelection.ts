@@ -10,7 +10,7 @@ export const isSelectionInputWithValue = (filterinput: FilterInput) =>
     ? true
     : false;
 
-export const setadvancedFilterParserMultiselect: filterParser = (
+export const setadvancedFilterParserSelection: filterParser = (
   filterInput,
   filterOutput
 ) => {
