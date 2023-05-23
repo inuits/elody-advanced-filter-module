@@ -7,14 +7,23 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     advancedFilters: async (_source, { choice }, { dataSources }) => {
       let filters;
       if (choice === "mediaFileFilters") {
-        filters = await resolveFiltersWithOptions(dataSources, Collection.Mediafiles);
+        filters = await resolveFiltersWithOptions(
+          dataSources,
+          Collection.Mediafiles
+        );
       } else {
-        filters = await resolveFiltersWithOptions(dataSources, Collection.Entities);
+        filters = await resolveFiltersWithOptions(
+          dataSources,
+          Collection.Entities
+        );
       }
-      return filters.map(filter => ({
-        ...filter, 
-        options: filter.options !== undefined ? filter.options : [] 
-      }))
+      if (!filters) {
+        return [];
+      }
+      return filters.map((filter) => ({
+        ...filter,
+        options: filter.options !== undefined ? filter.options : [],
+      }));
     },
   },
 };
