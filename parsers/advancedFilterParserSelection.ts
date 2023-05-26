@@ -5,8 +5,8 @@ const FILTER_TYPE = 'SelectionInput';
 
 export const isSelectionInputWithValue = (filterinput: FilterInput) =>
   filterinput?.type === FILTER_TYPE &&
-  filterinput!.selectionInput?.value &&
-  filterinput!.selectionInput?.value?.length > 0
+  filterinput!.multiSelectInput?.value &&
+  filterinput!.multiSelectInput?.value?.length > 0
     ? true
     : false;
 
@@ -22,9 +22,10 @@ export const setadvancedFilterParserSelection: filterParser = (
       filterOutput.push({
         key: filterinput!.key,
         type: "SelectionInput",
-        value: filterinput.selectionInput?.value as string | string[],
+        value: filterinput.multiSelectInput?.value as string | string[],
       });
     });
+  console.log(filterOutput)
   return {
     otherFilters: filterInput.filter(
       (filterInputElement: FilterInput) =>

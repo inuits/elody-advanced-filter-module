@@ -16,14 +16,24 @@ export const advancedFilterSchema = gql`
 
   type advancedFilter {
     key: String!
-    label: String
+    label: String!
     type: advancedFilterTypes!
     isRelation: Boolean
     options: [filterOption]
+    defaultValue(value: String): String
+    hidden(value: Boolean): Boolean!
+  }
+
+  type advancedFilters {
+    advancedFilter(
+      key: String!
+      label: String!
+      type: advancedFilterTypes!
+    ) : advancedFilter
   }
 
   type Query {
     FilterOptions(key: String!): [filterOption]
-    advancedFilters(choice: String!): [advancedFilter]
+    advancedFilters(entityType: String!): advancedFilters
   }
 `;
