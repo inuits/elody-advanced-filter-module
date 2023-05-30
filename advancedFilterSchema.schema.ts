@@ -34,6 +34,6 @@ export const advancedFilterSchema = gql`
 
   type Query {
     FilterOptions(key: String!): [filterOption]
-    advancedFilters(entityType: String!): advancedFilters
+    getAdvancedFilters(entityType: String!): advancedFilters
   }
 `;
