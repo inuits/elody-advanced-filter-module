@@ -18,9 +18,9 @@ export const advancedFilterSchema = gql`
     key: String!
     label: String!
     type: advancedFilterTypes!
-    isRelation: Boolean
-    options: [filterOption]
-    defaultValue(value: String): String
+    isRelation: Boolean!
+    options: [filterOption!]!
+    defaultValue(value: String!): String!
     hidden(value: Boolean): Boolean!
   }
 
@@ -29,11 +29,11 @@ export const advancedFilterSchema = gql`
       key: String!
       label: String!
       type: advancedFilterTypes!
-    ) : advancedFilter
+    ): advancedFilter
   }
 
   type Query {
+    EntityTypeFilters(type: String!): Entity!
     FilterOptions(key: String!): [filterOption]
-    getAdvancedFilters(entityType: String!): advancedFilters
   }
 `;

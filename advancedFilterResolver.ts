@@ -1,6 +1,7 @@
 import { resolveFiltersWithOptions } from "../baseGraphql/resolvers/filterResolver";
 import {
   Collection,
+  Entity,
   InputMaybe,
   Resolvers,
 } from "../../generated-types/type-defs";
@@ -8,6 +9,12 @@ import { ContextValue } from "base-graphql";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   Query: {
+    EntityTypeFilters: async (_source, { type }) => {
+      return {
+        type,
+        advancedFilters: {}
+      } as Entity;
+    },
     // advancedFilters: async (_source, { choice }, { dataSources }) => {
     //   let filters;
     //   if (choice === "mediaFileFilters") {
@@ -30,7 +37,10 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         key,
         label,
         type,
-        hidden: false,
+        isRelation: false,
+        options: [],
+        defaultValue: "",
+        hidden: false
       };
     },
   },
@@ -48,7 +58,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       return [{ value: "IotDevice", label: "IotDevice" }];
     },
     defaultValue: async (parent, { value }) => {
-      return value as InputMaybe<string>;
+      return value;
     },
     hidden: (parent, { value }) => {
       return value ? value : false;
