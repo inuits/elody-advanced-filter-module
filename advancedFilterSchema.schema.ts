@@ -1,17 +1,18 @@
 import { gql } from 'graphql-modules';
 
 export const advancedFilterSchema = gql`
+  enum advancedFilterTypes {
+    id
+    text
+    date
+    number
+    selection
+    boolean
+  }
+
   type filterOption {
     value: String
     label: String
-  }
-
-  enum advancedFilterTypes {
-    id
-    selection
-    date
-    boolean
-    text
   }
 
   type advancedFilter {
@@ -29,7 +30,7 @@ export const advancedFilterSchema = gql`
       key: String!
       label: String!
       type: advancedFilterTypes!
-    ): advancedFilter
+    ): advancedFilter!
   }
 
   type Query {
