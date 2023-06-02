@@ -1,14 +1,11 @@
-import { resolveFiltersWithOptions } from "../baseGraphql/resolvers/filterResolver";
-import {
-  Collection,
-  Entity,
-  InputMaybe,
-  Resolvers,
-} from "../../generated-types/type-defs";
 import { ContextValue } from "base-graphql";
+import { Entity, Resolvers } from "../../generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   Query: {
+    FilterMatcherMapping: async (_source, {}, { dataSources }) => {
+      return await dataSources.CollectionAPI.getFilterMatcherMapping();
+    },
     EntityTypeFilters: async (_source, { type }) => {
       return {
         type,

@@ -10,6 +10,15 @@ export const advancedFilterSchema = gql`
     boolean
   }
 
+  type filterMatcherMap {
+    id: [String!]!
+    text: [String!]!
+    date: [String!]!
+    number: [String!]!
+    selection: [String!]!
+    boolean: [String!]!
+  }
+
   type filterOption {
     value: String
     label: String
@@ -34,6 +43,7 @@ export const advancedFilterSchema = gql`
   }
 
   type Query {
+    FilterMatcherMapping: filterMatcherMap!
     EntityTypeFilters(type: String!): Entity!
     FilterOptions(key: String!): [filterOption]
   }
