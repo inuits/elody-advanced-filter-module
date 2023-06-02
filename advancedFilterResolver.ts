@@ -1,7 +1,39 @@
 import { ContextValue } from "base-graphql";
+import { GraphQLScalarType, Kind } from "graphql";
 import { Entity, Resolvers } from "../../generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
+  FilterValue: new GraphQLScalarType({
+    name: "FilterValue",
+    description: "Custom scalar representing various types",
+    serialize(value: any) {
+      return value;
+    },
+    parseValue(value: any) {
+      return value;
+    },
+    parseLiteral(ast) {
+      switch (ast.kind) {
+        case Kind.STRING:
+        case Kind.INT:
+        case Kind.BOOLEAN:
+          return ast.value;
+        case Kind.OBJECT:
+          const { fields } = ast;
+          const filterValue: any = {};
+
+          fields.forEach((field) => {
+            const key = field.name.value;
+            const value = field.value;
+            filterValue[key] = value;
+          });
+
+          return filterValue;
+        default:
+          return null;
+      }
+    },
+  }),
   Query: {
     FilterMatcherMapping: async (_source, {}, { dataSources }) => {
       return await dataSources.CollectionAPI.getFilterMatcherMapping();
@@ -28,7 +60,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     //   return {};
     // },
   },
-  advancedFilters: {
+  AdvancedFilters: {
     advancedFilter: async (_source, { key, label, type }) => {
       return {
         key,
@@ -41,7 +73,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       };
     },
   },
-  advancedFilter: {
+  AdvancedFilter: {
     key: async (parent) => {
       return parent.key;
     },

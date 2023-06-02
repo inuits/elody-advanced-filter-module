@@ -1,7 +1,7 @@
 import { gql } from 'graphql-modules';
 
 export const advancedFilterSchema = gql`
-  enum advancedFilterTypes {
+  enum AdvancedFilterTypes {
     id
     text
     date
@@ -10,7 +10,7 @@ export const advancedFilterSchema = gql`
     boolean
   }
 
-  type filterMatcherMap {
+  type FilterMatcherMap {
     id: [String!]!
     text: [String!]!
     date: [String!]!
@@ -19,32 +19,40 @@ export const advancedFilterSchema = gql`
     boolean: [String!]!
   }
 
-  type filterOption {
+  type FilterOption {
     value: String
     label: String
   }
 
-  type advancedFilter {
+  type AdvancedFilter {
     key: String!
     label: String!
-    type: advancedFilterTypes!
+    type: AdvancedFilterTypes!
     isRelation: Boolean!
-    options: [filterOption!]!
+    options: [FilterOption!]!
     defaultValue(value: String!): String!
     hidden(value: Boolean): Boolean!
   }
 
-  type advancedFilters {
+  type AdvancedFilters {
     advancedFilter(
       key: String!
       label: String!
-      type: advancedFilterTypes!
-    ): advancedFilter!
+      type: AdvancedFilterTypes!
+    ): AdvancedFilter!
+  }
+
+  scalar FilterValue
+  input AdvancedFilterInput {
+    type: AdvancedFilterTypes!
+    key: String!
+    value: FilterValue!
+    match_exact: Boolean
   }
 
   type Query {
-    FilterMatcherMapping: filterMatcherMap!
+    FilterMatcherMapping: FilterMatcherMap!
     EntityTypeFilters(type: String!): Entity!
-    FilterOptions(key: String!): [filterOption]
+    FilterOptions(key: String!): [FilterOption]
   }
 `;
