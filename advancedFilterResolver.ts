@@ -1,6 +1,6 @@
 import { ContextValue } from "base-graphql";
 import { GraphQLScalarType, Kind } from "graphql";
-import { Entity, Resolvers } from "../../generated-types/type-defs";
+import { DamsIcons, Entity, Resolvers } from "../../generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   FilterValue: new GraphQLScalarType({
@@ -84,7 +84,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       return parent.type;
     },
     options: async (parent) => {
-      return [{ value: "IotDevice", label: "IotDevice" }];
+      return [{ icon: DamsIcons.NoIcon, label: "IotDevice", value: "IotDevice" }];
     },
     defaultValue: async (parent, { value }) => {
       return value;

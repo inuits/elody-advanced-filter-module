@@ -19,17 +19,13 @@ export const advancedFilterSchema = gql`
     boolean: [String!]!
   }
 
-  type FilterOption {
-    value: String
-    label: String
-  }
-
   type AdvancedFilter {
     key: String!
     label: String!
     type: AdvancedFilterTypes!
     isRelation: Boolean!
-    options: [FilterOption!]!
+    options: [DropdownOption!]!
+    advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
     defaultValue(value: String!): String!
     hidden(value: Boolean): Boolean!
   }
@@ -39,6 +35,7 @@ export const advancedFilterSchema = gql`
       key: String!
       label: String!
       type: AdvancedFilterTypes!
+      advancedFilterInputForRetrievingOptions: AdvancedFilterInput
     ): AdvancedFilter!
   }
 
@@ -48,11 +45,19 @@ export const advancedFilterSchema = gql`
     key: String!
     value: FilterValue!
     match_exact: Boolean
+    provide_value_options_for_key: Boolean
+  }
+  type AdvancedFilterInputType {
+    type: AdvancedFilterTypes!
+    key: String!
+    value: FilterValue!
+    match_exact: Boolean
+    provide_value_options_for_key: Boolean
   }
 
   type Query {
     FilterMatcherMapping: FilterMatcherMap!
     EntityTypeFilters(type: String!): Entity!
-    FilterOptions(key: String!): [FilterOption]
+    FilterOptions(input: AdvancedFilterInput!): [String!]!
   }
 `;
