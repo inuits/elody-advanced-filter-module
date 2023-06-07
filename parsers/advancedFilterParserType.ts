@@ -1,10 +1,9 @@
-import { FilterInput } from "../generated-types/type-defs";
 import { filterParser, parsedInput } from "./advancedFilterParser";
 import { isSelectionInputWithValue } from "./advancedFilterParserSelection";
 
 const FILTER_TYPE = "type";
 
-const isTypeFilter = (filterinput: FilterInput) =>
+const isTypeFilter = (filterinput: any) =>
   isSelectionInputWithValue(filterinput) && filterinput.key === FILTER_TYPE;
 
 export const setAdvancedFilterTypeParser: filterParser = (
@@ -14,10 +13,10 @@ export const setAdvancedFilterTypeParser: filterParser = (
   let itemTypes: string[] = [];
 
   filterInput
-    .filter((filterInputElement: FilterInput) =>
+    .filter((filterInputElement: any) =>
       isTypeFilter(filterInputElement)
     )
-    .forEach((filterinput: FilterInput) => {
+    .forEach((filterinput: any) => {
       itemTypes = filterinput!.multiSelectInput?.value as string[];
     });
 
@@ -30,7 +29,7 @@ export const setAdvancedFilterTypeParser: filterParser = (
 
   return {
     otherFilters: filterInput.filter(
-      (filterInputElement: FilterInput) => !isTypeFilter(filterInputElement)
+      (filterInputElement: any) => !isTypeFilter(filterInputElement)
     ),
     filterOutput,
   };

@@ -1,9 +1,8 @@
-import { FilterInput } from '../generated-types/type-defs';
 import { filterParser, parsedInput } from './advancedFilterParser';
 
 const FILTER_TYPE = 'TextInput';
 
-export const isTextInputWithValue = (filterinput: FilterInput) =>
+export const isTextInputWithValue = (filterinput: any) =>
   filterinput?.type === FILTER_TYPE &&
   filterinput!.textInput &&
   filterinput!.textInput.value != ''
@@ -15,8 +14,8 @@ export const setAdvancedFilterParserText: filterParser = (
   filterOutput
 ) => {
   filterInput
-    .filter((filterinput: FilterInput) => isTextInputWithValue(filterinput))
-    .forEach((filterinput: FilterInput) => {
+    .filter((filterinput: any) => isTextInputWithValue(filterinput))
+    .forEach((filterinput: any) => {
       const returnObject: parsedInput = {
         type: filterinput!.type,
       };
@@ -32,7 +31,7 @@ export const setAdvancedFilterParserText: filterParser = (
 
   return {
     otherFilters: filterInput.filter(
-      (filterinput: FilterInput) => !isTextInputWithValue(filterinput)
+      (filterinput: any) => !isTextInputWithValue(filterinput)
     ),
     filterOutput,
   };

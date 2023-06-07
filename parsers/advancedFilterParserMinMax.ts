@@ -1,9 +1,8 @@
-import { FilterInput } from '../generated-types/type-defs';
 import { filterParser, parsedInput } from './advancedFilterParser';
 
 const FILTER_TYPE = 'MinMaxInput';
 
-export const isMinMaxInputWithValue = (filterinput: FilterInput) =>
+export const isMinMaxInputWithValue = (filterinput: any) =>
   filterinput?.type === FILTER_TYPE &&
   (filterinput!.minMaxInput?.max || filterinput.minMaxInput?.min)
     ? true
@@ -14,8 +13,8 @@ export const setAdvancedFilterParserMinMax: filterParser = (
   filterOutput
 ) => {
   filterInput
-    .filter((filterinput: FilterInput) => isMinMaxInputWithValue(filterinput))
-    .forEach((filterinput: FilterInput) => {
+    .filter((filterinput: any) => isMinMaxInputWithValue(filterinput))
+    .forEach((filterinput: any) => {
       const returnObject: parsedInput = {
         type: filterinput!.type,
       };
@@ -39,7 +38,7 @@ export const setAdvancedFilterParserMinMax: filterParser = (
 
   return {
     otherFilters: filterInput.filter(
-      (filterinput: FilterInput) => !isMinMaxInputWithValue(filterinput)
+      (filterinput: any) => !isMinMaxInputWithValue(filterinput)
     ),
     filterOutput,
   };

@@ -1,4 +1,3 @@
-import { FilterInput, Maybe } from '../generated-types/type-defs';
 import { setAdvancedFilterParserMinMax } from './advancedFilterParserMinMax';
 import { setadvancedFilterParserSelection } from './advancedFilterParserSelection';
 import { setAdvancedFilterParserText } from './advancedFilterParserText';
@@ -13,10 +12,10 @@ export interface parsedInput {
 }
 
 export type filterParser = (
-  filterInput: FilterInput[],
+  filterInput: any[],
   filterOutput: parsedInput[]
 ) => {
-  otherFilters: FilterInput[];
+  otherFilters: any[];
   filterOutput: parsedInput[];
 };
 
@@ -28,10 +27,10 @@ const PARSERS: filterParser[] = [
 ];
 
 export const filterInputParser = (
-  filterinput: Maybe<FilterInput>[]
+  filterinput: any[]
 ): parsedInput[] => {
-  let filterInputForParser: FilterInput[] =
-    filterinput === null ? [] : (filterinput as FilterInput[]);
+  let filterInputForParser: any[] =
+    filterinput === null ? [] : (filterinput as any[]);
   let advancedResult: parsedInput[] = [];
   try {
     PARSERS.forEach((parser) => {
