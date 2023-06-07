@@ -1,6 +1,6 @@
 import { ContextValue } from "base-graphql";
 import { GraphQLScalarType, Kind } from "graphql";
-import { DamsIcons, Entity, Resolvers } from "./generated-types/type-defs";
+import { AdvancedFilterInputType, DamsIcons, Entity, Resolvers } from "./generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   FilterValue: new GraphQLScalarType({
@@ -44,6 +44,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         advancedFilters: {}
       } as Entity;
     },
+    FilterOptions: async (_source, { input }, { dataSources }) => {
+      return await dataSources.CollectionAPI.GetFilterOptions(input);
+    },
     // advancedFilters: async (_source, { choice }, { dataSources }) => {
     //   let filters;
     //   if (choice === "mediaFileFilters") {
@@ -61,7 +64,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     // },
   },
   AdvancedFilters: {
-    advancedFilter: async (_source, { key, label, type }) => {
+    advancedFilter: async (_source, { key, label, type, advancedFilterInputForRetrievingOptions }) => {
       return {
         key,
         label,
@@ -69,7 +72,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         isRelation: false,
         options: [],
         defaultValue: "",
-        hidden: false
+        hidden: false,
+        advancedFilterInputForRetrievingOptions
       };
     },
   },
@@ -85,6 +89,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     options: async (parent) => {
       return [{ icon: DamsIcons.NoIcon, label: "IotDevice", value: "IotDevice" }];
+    },
+    advancedFilterInputForRetrievingOptions: async (parent) => {
+      return parent.advancedFilterInputForRetrievingOptions as AdvancedFilterInputType;
     },
     defaultValue: async (parent, { value }) => {
       return value;
