@@ -1,4 +1,4 @@
-import { FilterInput } from '../../../generated-types/type-defs';
+import { FilterInput } from '../generated-types/type-defs';
 import { filterParser, parsedInput } from './advancedFilterParser';
 
 const FILTER_TYPE = 'TextInput';

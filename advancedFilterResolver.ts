@@ -1,6 +1,6 @@
 import { ContextValue } from "base-graphql";
 import { GraphQLScalarType, Kind } from "graphql";
-import { DamsIcons, Entity, Resolvers } from "../../generated-types/type-defs";
+import { DamsIcons, Entity, Resolvers } from "./generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   FilterValue: new GraphQLScalarType({

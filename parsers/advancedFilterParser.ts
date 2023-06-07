@@ -1,4 +1,4 @@
-import { FilterInput, Maybe } from '../../../generated-types/type-defs';
+import { FilterInput, Maybe } from '../generated-types/type-defs';
 import { setAdvancedFilterParserMinMax } from './advancedFilterParserMinMax';
 import { setadvancedFilterParserSelection } from './advancedFilterParserSelection';
 import { setAdvancedFilterParserText } from './advancedFilterParserText';
