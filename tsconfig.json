@@ -8,11 +8,11 @@
     "moduleResolution": "node",
     "outDir": "./dist",
     "removeComments": true,
-    "rootDir": "./",
+    "rootDir": "../../",
     "target": "es6",
     "skipLibCheck": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules"],
-  "files": ["./generated-types/type-defs.ts"]
+  "files": ["../../generated-types/type-defs.ts"]
 }
