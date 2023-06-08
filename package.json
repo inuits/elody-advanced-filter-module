@@ -1,9 +1,8 @@
 {
   "name": "advanced-filter-module",
-  "version": "0.0.25",
+  "version": "0.0.27",
   "license": "MIT",
   "main":"./advancedFilterModule.ts",
-  "type": "module",
   "scripts": {
     "build": "tsc"
   },
@@ -19,7 +18,7 @@
     "@graphql-codegen/typescript-resolvers": "^2.7.13"
   },
   "publishConfig": {
-    "main": "./dist/modules/advancedFiltersModule/advancedFilterModule.js",
+    "main": "./dist/dams/advancedFiltersModule/advancedFilterModule.js",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
