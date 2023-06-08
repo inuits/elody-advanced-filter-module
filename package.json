@@ -21,7 +21,7 @@
     "graphql": "^16.6.0"
   },
   "publishConfig": {
-    "main": "./dist/dams/advancedFiltersModule/advancedFilterModule.js",
+    "main": "./dist/dams/inuits-dams-advanced-filter-module/advancedFilterModule.js",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
