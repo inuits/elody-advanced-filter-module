@@ -8,6 +8,9 @@ build-job:       # build and publish to nexus
     changes: 
       - package.json
   stage: build
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@7.26.0 --activate
   script:
     - echo "Building and publishing the code..."
     - echo //nexus.inuits.io/repository/:_authToken=${NPM_CONFIG__AUTH_TOKEN} > ~/.npmrc
@@ -29,7 +32,7 @@ build-job:       # build and publish to nexus
         mkdir ./schemas
         find ~/node_modules/ -type f -name "*.schema.ts" -exec cp -n {} ./schemas \;
         find ~/node_modules/ -type f -name "*.queries.ts" -exec cp -n {} ./schemas \;
-        npm install --production=false
+        pnpm install
 
         # generate graphql types and move it to the right folder, delete old folder and schemas since they are no longer needed
         mkdir generated-types
@@ -40,8 +43,8 @@ build-job:       # build and publish to nexus
         rm -rf ./generated-types
         rm -rf schemas
 
-        npm run build
-        npm publish
+        pnpm run build
+        pnpm publish
         echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to the Nexus NPM registry."
       else
         echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
