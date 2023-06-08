@@ -26,18 +26,18 @@ build-job:       # build and publish to nexus
       if ! npm view "$NPM_PACKAGE_NAME" versions | grep -F "$NPM_PACKAGE_VERSION"; then
         echo "Found unpublished version ${NPM_PACKAGE_VERSION} building and publishing now..."
         cp ~/codegen.ts ./codegen.ts # copy the codegen from the base image
-
         mkdir ./schemas
         find ~/node_modules/ -type f -name "*.schema.ts" -exec cp -n {} ./schemas \;
         find ~/node_modules/ -type f -name "*.queries.ts" -exec cp -n {} ./schemas \;
-
-        cat ./codegen.ts
         npm install --production=false
 
-        mkdir ./generated-types
+        # generate graphql types and move it to the right folder, delete old folder and schemas since they are no longer needed
+        mkdir generated-types
+        rm -rf ../../generated-types
+        mkdir ../../generated-types
         npx graphql-code-generator --config ./codegen.ts
-
-        # no longer needed after the graphql generate is done
+        mv -f ./generated-types/type-defs.ts ../../generated-types/type-defs.ts
+        rm -rf ./generated-types
         rm -rf schemas
 
         npm run build
