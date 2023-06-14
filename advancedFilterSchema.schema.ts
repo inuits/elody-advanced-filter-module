@@ -58,6 +58,6 @@ export const advancedFilterSchema = gql`
   type Query {
     FilterMatcherMapping: FilterMatcherMap!
     EntityTypeFilters(type: String!): Entity!
-    FilterOptions(input: AdvancedFilterInput!): [String!]!
+    FilterOptions(input: AdvancedFilterInput!, limit: Int!): [String!]!
   }
 `;
