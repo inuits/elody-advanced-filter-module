@@ -20,9 +20,9 @@ export const advancedFilterSchema = gql`
   }
 
   type AdvancedFilter {
+    type: AdvancedFilterTypes!
     key: String!
     label: String!
-    type: AdvancedFilterTypes!
     isRelation: Boolean!
     options: [DropdownOption!]!
     advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
@@ -45,6 +45,7 @@ export const advancedFilterSchema = gql`
     key: String!
     value: FilterValue!
     match_exact: Boolean
+    item_types: [String]
     provide_value_options_for_key: Boolean
   }
   type AdvancedFilterInputType {
@@ -52,6 +53,7 @@ export const advancedFilterSchema = gql`
     key: String!
     value: FilterValue!
     match_exact: Boolean
+    item_types: [String]
     provide_value_options_for_key: Boolean
   }
 
