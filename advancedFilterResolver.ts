@@ -64,12 +64,13 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     // },
   },
   AdvancedFilters: {
-    advancedFilter: async (_source, { key, label, type, advancedFilterInputForRetrievingOptions }) => {
+    advancedFilter: async (_source, { key, label, type, isDisplayedByDefault, advancedFilterInputForRetrievingOptions }) => {
       return {
         key,
         label,
         type,
         isRelation: false,
+        isDisplayedByDefault: isDisplayedByDefault ?? false,
         options: [],
         defaultValue: "",
         hidden: false,
@@ -86,6 +87,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     type: async (parent) => {
       return parent.type;
+    },
+    isDisplayedByDefault: async (parent) => {
+      return parent.isDisplayedByDefault;
     },
     options: async (parent) => {
       return [{ icon: DamsIcons.NoIcon, label: "IotDevice", value: "IotDevice" }];

@@ -23,6 +23,7 @@ export const advancedFilterSchema = gql`
     type: AdvancedFilterTypes!
     key: String!
     label: String!
+    isDisplayedByDefault: Boolean!
     isRelation: Boolean!
     options: [DropdownOption!]!
     advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
@@ -35,6 +36,7 @@ export const advancedFilterSchema = gql`
       key: String!
       label: String!
       type: AdvancedFilterTypes!
+      isDisplayedByDefault: Boolean
       advancedFilterInputForRetrievingOptions: AdvancedFilterInput
     ): AdvancedFilter!
   }
