@@ -1,6 +1,11 @@
 import { ContextValue } from "base-graphql";
 import { GraphQLScalarType, Kind } from "graphql";
-import { AdvancedFilterInputType, DamsIcons, Entity, Resolvers } from "../../generated-types/type-defs";
+import {
+  AdvancedFilterInputType,
+  DamsIcons,
+  Entity,
+  Resolvers,
+} from "../../generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   FilterValue: new GraphQLScalarType({
@@ -41,30 +46,24 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     EntityTypeFilters: async (_source, { type }) => {
       return {
         type,
-        advancedFilters: {}
+        advancedFilters: {},
       } as Entity;
     },
     FilterOptions: async (_source, { input, limit }, { dataSources }) => {
       return await dataSources.CollectionAPI.GetFilterOptions(input, limit);
     },
-    // advancedFilters: async (_source, { choice }, { dataSources }) => {
-    //   let filters;
-    //   if (choice === "mediaFileFilters") {
-    //     filters = await resolveFiltersWithOptions(dataSources, Collection.Mediafiles);
-    //   } else {
-    //     filters = await resolveFiltersWithOptions(dataSources, Collection.Entities);
-    //   }
-    //   return filters.map(filter => ({
-    //     ...filter,
-    //     options: filter.options !== undefined ? filter.options : []
-    //   }))
-    // },
-    // advancedFilters: async (_source, {}, { dataSources }) => {
-    //   return {};
-    // },
   },
   AdvancedFilters: {
-    advancedFilter: async (_source, { key, label, type, isDisplayedByDefault, advancedFilterInputForRetrievingOptions }) => {
+    advancedFilter: async (
+      _source,
+      {
+        key,
+        label,
+        type,
+        isDisplayedByDefault,
+        advancedFilterInputForRetrievingOptions,
+      }
+    ) => {
       return {
         key,
         label,
@@ -74,7 +73,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         options: [],
         defaultValue: "",
         hidden: false,
-        advancedFilterInputForRetrievingOptions
+        advancedFilterInputForRetrievingOptions,
       };
     },
   },
@@ -92,7 +91,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       return parent.isDisplayedByDefault;
     },
     options: async (parent) => {
-      return [{ icon: DamsIcons.NoIcon, label: "IotDevice", value: "IotDevice" }];
+      return [
+        { icon: DamsIcons.NoIcon, label: "IotDevice", value: "IotDevice" },
+      ];
     },
     advancedFilterInputForRetrievingOptions: async (parent) => {
       return parent.advancedFilterInputForRetrievingOptions as AdvancedFilterInputType;
