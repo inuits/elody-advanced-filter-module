@@ -1,7 +1,6 @@
 import { createModule } from "graphql-modules";
 import { advancedFilterSchema } from "./advancedFilterSchema.schema";
 import { advancedFilterResolver } from "./advancedFilterResolver";
-import { filterInputParser, parsedInput } from "./parsers/advancedFilterParser";
 
 const advancedFilterModule = createModule({
   id: "advancedFilterModule",
@@ -10,10 +9,4 @@ const advancedFilterModule = createModule({
   resolvers: [advancedFilterResolver],
 });
 
-export {
-  advancedFilterModule,
-  advancedFilterResolver,
-  advancedFilterSchema,
-  filterInputParser,
-  parsedInput,
-};
+export { advancedFilterModule, advancedFilterResolver, advancedFilterSchema };
