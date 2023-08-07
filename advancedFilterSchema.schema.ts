@@ -8,6 +8,7 @@ export const advancedFilterSchema = gql`
     number
     selection
     boolean
+    relation
   }
 
   type FilterMatcherMap {
@@ -17,6 +18,7 @@ export const advancedFilterSchema = gql`
     number: [String!]!
     selection: [String!]!
     boolean: [String!]!
+    relation: [String!]!
   }
 
   type AdvancedFilter {
