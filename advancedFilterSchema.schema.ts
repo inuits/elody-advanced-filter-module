@@ -18,7 +18,7 @@ export const advancedFilterSchema = gql`
     number: [String!]!
     selection: [String!]!
     boolean: [String!]!
-    # relation: [String!]!
+    relation: [String!]!
   }
 
   type AdvancedFilter {
