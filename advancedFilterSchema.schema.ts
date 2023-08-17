@@ -9,7 +9,6 @@ export const advancedFilterSchema = gql`
     selection
     boolean
     relation
-    type
   }
 
   type FilterMatcherMap {
@@ -20,7 +19,6 @@ export const advancedFilterSchema = gql`
     selection: [String!]!
     boolean: [String!]!
     relation: [String!]!
-    # type: [String!]!
   }
 
   type AdvancedFilter {
