@@ -50,7 +50,7 @@ export const advancedFilterSchema = gql`
     type: AdvancedFilterTypes!
     key: String!
     value: FilterValue!
-    parent: String
+    parents: [String]
     item_types: [String]
     match_exact: Boolean
     provide_value_options_for_key: Boolean
@@ -59,7 +59,7 @@ export const advancedFilterSchema = gql`
     type: AdvancedFilterTypes!
     key: String!
     value: FilterValue!
-    parent: String
+    parents: [String]
     item_types: [String]
     match_exact: Boolean
     provide_value_options_for_key: Boolean
