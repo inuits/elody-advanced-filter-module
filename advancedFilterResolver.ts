@@ -1,5 +1,4 @@
 import { ContextValue } from "base-graphql";
-import { GraphQLScalarType, Kind } from "graphql";
 import {
   AdvancedFilterInputType,
   DamsIcons,
@@ -8,37 +7,6 @@ import {
 } from "../../generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
-  FilterValue: new GraphQLScalarType({
-    name: "FilterValue",
-    description: "Custom scalar representing various types",
-    serialize(value: any) {
-      return value;
-    },
-    parseValue(value: any) {
-      return value;
-    },
-    parseLiteral(ast) {
-      switch (ast.kind) {
-        case Kind.STRING:
-        case Kind.INT:
-        case Kind.BOOLEAN:
-          return ast.value;
-        case Kind.OBJECT:
-          const { fields } = ast;
-          const filterValue: any = {};
-
-          fields.forEach((field) => {
-            const key = field.name.value;
-            const value = field.value;
-            filterValue[key] = value;
-          });
-
-          return filterValue;
-        default:
-          return null;
-      }
-    },
-  }),
   Query: {
     FilterMatcherMapping: async (_source, {}, { dataSources }) => {
       return await dataSources.CollectionAPI.getFilterMatcherMapping();
@@ -57,38 +25,42 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     advancedFilter: async (
       _source,
       {
-        key,
-        label,
         type,
+        key,
+        parentKey,
+        label,
         isDisplayedByDefault,
         advancedFilterInputForRetrievingOptions,
       }
     ) => {
       return {
-        key,
-        label,
         type,
-        isRelation: false,
-        isDisplayedByDefault: isDisplayedByDefault ?? false,
+        key,
+        parentKey: parentKey,
+        label: label || "",
+        isDisplayedByDefault: isDisplayedByDefault || false,
         options: [],
+        advancedFilterInputForRetrievingOptions,
         defaultValue: "",
         hidden: false,
-        advancedFilterInputForRetrievingOptions,
       };
     },
   },
   AdvancedFilter: {
-    key: async (parent) => {
-      return parent.key;
-    },
-    label: async (parent) => {
-      return parent.label;
-    },
     type: async (parent) => {
       return parent.type;
     },
+    key: async (parent) => {
+      return parent.key || "";
+    },
+    parentKey: async (parent) => {
+      return parent.parentKey || "";
+    },
+    label: async (parent) => {
+      return parent.label || "";
+    },
     isDisplayedByDefault: async (parent) => {
-      return parent.isDisplayedByDefault;
+      return parent.isDisplayedByDefault || false;
     },
     options: async (parent) => {
       return [
