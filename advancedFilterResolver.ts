@@ -76,5 +76,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     hidden: (parent, { value }) => {
       return value ? value : false;
     },
+    tooltip: (parent, { value }) => {
+      return value ? value : 'no-tooltip';
+    },
   },
 };

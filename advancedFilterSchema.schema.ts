@@ -31,6 +31,7 @@ export const advancedFilterSchema = gql`
     advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
     defaultValue(value: JSON!): JSON!
     hidden(value: Boolean): Boolean!
+    tooltip(value: String): String
   }
 
   type AdvancedFilters {
