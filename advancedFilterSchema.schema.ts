@@ -50,6 +50,7 @@ export const advancedFilterSchema = gql`
     parent_key: String
     key: String
     value: JSON!
+    metadata_key_as_label: String
     item_types: [String]
     match_exact: Boolean
     provide_value_options_for_key: Boolean
@@ -59,6 +60,7 @@ export const advancedFilterSchema = gql`
     parent_key: String
     key: String
     value: JSON!
+    metadata_key_as_label: String
     item_types: [String]
     match_exact: Boolean
   }
