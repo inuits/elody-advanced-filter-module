@@ -4,9 +4,9 @@
 ###############################################################################
 
 include:
-  - project: 'inuits/gitlab-ci/pipeline-templates/'
+  - project: 'inuits/gitlab-ci/pipeline-templates'
     file: 'pipelines/applications/graphql-module-pipeline.yml'
-    ref: 'master'
+    ref: 'v2.0.0'
 
 variables:
   GRAPHQL_IMAGE: 'pza/dams-graphql'
