@@ -54,6 +54,7 @@ export const advancedFilterSchema = gql`
     item_types: [String]
     match_exact: Boolean
     provide_value_options_for_key: Boolean
+    operator: String
   }
   type AdvancedFilterInputType {
     type: AdvancedFilterTypes!
