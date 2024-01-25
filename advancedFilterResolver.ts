@@ -26,8 +26,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       _source,
       {
         type,
-        key,
         parentKey,
+        key,
+        itemTypes,
         label,
         isDisplayedByDefault,
         advancedFilterInputForRetrievingOptions,
@@ -35,8 +36,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     ) => {
       return {
         type,
-        key,
         parentKey: parentKey,
+        key,
+        itemTypes,
         label: label || "",
         isDisplayedByDefault: isDisplayedByDefault || false,
         options: [],
@@ -50,11 +52,14 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     type: async (parent) => {
       return parent.type;
     },
+    parentKey: async (parent) => {
+      return parent.parentKey || "";
+    },
     key: async (parent) => {
       return parent.key || "";
     },
-    parentKey: async (parent) => {
-      return parent.parentKey || "";
+    itemTypes: async (parent) => {
+      return parent.itemTypes || [];
     },
     label: async (parent) => {
       return parent.label || "";

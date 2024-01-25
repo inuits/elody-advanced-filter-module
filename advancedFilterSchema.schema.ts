@@ -23,8 +23,9 @@ export const advancedFilterSchema = gql`
 
   type AdvancedFilter {
     type: AdvancedFilterTypes!
-    key: String
     parentKey: String
+    key: String
+    itemTypes: [String]
     label: String
     isDisplayedByDefault: Boolean!
     options: [DropdownOption!]!
@@ -37,8 +38,9 @@ export const advancedFilterSchema = gql`
   type AdvancedFilters {
     advancedFilter(
       type: AdvancedFilterTypes!
-      key: String
       parentKey: String
+      key: String
+      itemTypes: [String]
       label: String
       isDisplayedByDefault: Boolean
       advancedFilterInputForRetrievingOptions: AdvancedFilterInput
