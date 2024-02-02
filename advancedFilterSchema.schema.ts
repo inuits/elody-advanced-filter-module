@@ -11,17 +11,28 @@ export const advancedFilterSchema = gql`
     type
   }
 
-  type FilterMatcherMap {
-    id: [String!]!
-    text: [String!]!
-    date: [String!]!
-    number: [String!]!
-    selection: [String!]!
-    boolean: [String!]!
-    type: [String!]!
+  input AdvancedFilterInput {
+    lookup: LookupInput
+    type: AdvancedFilterTypes!
+    parent_key: String
+    key: String
+    value: JSON!
+    metadata_key_as_label: String
+    item_types: [String]
+    match_exact: Boolean
+    provide_value_options_for_key: Boolean
+    operator: String
+  }
+
+  input LookupInput {
+    from: String!
+    local_field: String!
+    foreign_field: String!
+    as: String!
   }
 
   type AdvancedFilter {
+    lookup: LookupInputType
     type: AdvancedFilterTypes!
     parentKey: String
     key: String
@@ -35,8 +46,20 @@ export const advancedFilterSchema = gql`
     tooltip(value: Boolean): Boolean
   }
 
+  type AdvancedFilterInputType {
+    lookup: LookupInputType
+    type: AdvancedFilterTypes!
+    parent_key: String
+    key: String
+    value: JSON!
+    metadata_key_as_label: String
+    item_types: [String]
+    match_exact: Boolean
+  }
+
   type AdvancedFilters {
     advancedFilter(
+      lookup: LookupInput
       type: AdvancedFilterTypes!
       parentKey: String
       key: String
@@ -47,25 +70,21 @@ export const advancedFilterSchema = gql`
     ): AdvancedFilter!
   }
 
-  input AdvancedFilterInput {
-    type: AdvancedFilterTypes!
-    parent_key: String
-    key: String
-    value: JSON!
-    metadata_key_as_label: String
-    item_types: [String]
-    match_exact: Boolean
-    provide_value_options_for_key: Boolean
-    operator: String
+  type FilterMatcherMap {
+    id: [String!]!
+    text: [String!]!
+    date: [String!]!
+    number: [String!]!
+    selection: [String!]!
+    boolean: [String!]!
+    type: [String!]!
   }
-  type AdvancedFilterInputType {
-    type: AdvancedFilterTypes!
-    parent_key: String
-    key: String
-    value: JSON!
-    metadata_key_as_label: String
-    item_types: [String]
-    match_exact: Boolean
+
+  type LookupInputType {
+    from: String!
+    local_field: String!
+    foreign_field: String!
+    as: String!
   }
 
   type Query {

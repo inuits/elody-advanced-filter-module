@@ -3,6 +3,7 @@ import {
   AdvancedFilterInputType,
   DamsIcons,
   Entity,
+  LookupInputType,
   Resolvers,
 } from "../../generated-types/type-defs";
 
@@ -25,6 +26,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     advancedFilter: async (
       _source,
       {
+        lookup,
         type,
         parentKey,
         key,
@@ -35,8 +37,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       }
     ) => {
       return {
+        lookup,
         type,
-        parentKey: parentKey,
+        parentKey,
         key,
         itemTypes,
         label: label || "",
@@ -49,6 +52,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
   },
   AdvancedFilter: {
+    lookup: async (parent) => {
+      return parent.lookup as LookupInputType;
+    },
     type: async (parent) => {
       return parent.type;
     },
