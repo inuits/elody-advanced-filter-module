@@ -9,6 +9,7 @@ export const advancedFilterSchema = gql`
     selection
     boolean
     type
+    metadata_on_relation
   }
 
   input AdvancedFilterInput {
@@ -78,6 +79,7 @@ export const advancedFilterSchema = gql`
     selection: [String!]!
     boolean: [String!]!
     type: [String!]!
+    metadata_on_relation: [String!]!
   }
 
   type LookupInputType {
