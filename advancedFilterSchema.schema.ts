@@ -16,7 +16,7 @@ export const advancedFilterSchema = gql`
     lookup: LookupInput
     type: AdvancedFilterTypes!
     parent_key: String
-    key: String
+    key: JSON
     value: JSON!
     metadata_key_as_label: String
     item_types: [String]
@@ -37,7 +37,7 @@ export const advancedFilterSchema = gql`
     lookup: LookupInputType
     type: AdvancedFilterTypes!
     parentKey: String
-    key: String
+    key: JSON
     itemTypes: [String]
     label: String
     isDisplayedByDefault: Boolean!
@@ -53,7 +53,7 @@ export const advancedFilterSchema = gql`
     lookup: LookupInputType
     type: AdvancedFilterTypes!
     parent_key: String
-    key: String
+    key: JSON
     value: JSON!
     metadata_key_as_label: String
     item_types: [String]
@@ -66,7 +66,7 @@ export const advancedFilterSchema = gql`
       lookup: LookupInput
       type: AdvancedFilterTypes!
       parentKey: String
-      key: String
+      key: JSON
       itemTypes: [String]
       label: String
       isDisplayedByDefault: Boolean
