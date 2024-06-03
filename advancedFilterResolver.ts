@@ -18,8 +18,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         advancedFilters: {},
       } as Entity;
     },
-    FilterOptions: async (_source, { input, limit }, { dataSources }) => {
-      return await dataSources.CollectionAPI.GetFilterOptions(input, limit);
+    FilterOptions: async (_source, { input, limit, entityType }, { dataSources }) => {
+      return await dataSources.CollectionAPI.GetFilterOptions(input, limit, entityType);
     },
   },
   AdvancedFilters: {
