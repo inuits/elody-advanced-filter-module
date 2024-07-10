@@ -17,7 +17,7 @@ export const advancedFilterSchema = gql`
     type: AdvancedFilterTypes!
     parent_key: String
     key: JSON
-    value: JSON!
+    value: [JSON!]!
     metadata_key_as_label: String
     item_types: [String]
     match_exact: Boolean
