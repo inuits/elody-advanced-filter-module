@@ -23,7 +23,7 @@ export const advancedFilterSchema = gql`
     match_exact: Boolean
     provide_value_options_for_key: Boolean
     operator: String
-    edge_collection: String
+    aggregation: String
   }
 
   input LookupInput {
@@ -43,7 +43,7 @@ export const advancedFilterSchema = gql`
     isDisplayedByDefault: Boolean!
     options: [DropdownOption!]!
     advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
-    edgeCollection: String
+    aggregation: String
     defaultValue(value: JSON!): JSON!
     hidden(value: Boolean): Boolean!
     tooltip(value: Boolean): Boolean
@@ -58,7 +58,7 @@ export const advancedFilterSchema = gql`
     metadata_key_as_label: String
     item_types: [String]
     match_exact: Boolean
-    edge_collection: String
+    aggregation: String
   }
 
   type AdvancedFilters {
@@ -71,7 +71,7 @@ export const advancedFilterSchema = gql`
       label: String
       isDisplayedByDefault: Boolean
       advancedFilterInputForRetrievingOptions: AdvancedFilterInput
-      edgeCollection: String
+      aggregation: String
     ): AdvancedFilter!
   }
 

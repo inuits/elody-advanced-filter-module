@@ -34,7 +34,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         label,
         isDisplayedByDefault,
         advancedFilterInputForRetrievingOptions,
-        edgeCollection
+        aggregation
       }
     ) => {
       return {
@@ -47,7 +47,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         isDisplayedByDefault: isDisplayedByDefault || false,
         options: [],
         advancedFilterInputForRetrievingOptions,
-        edgeCollection,
+        aggregation,
         defaultValue: "",
         hidden: false,
       };
@@ -83,8 +83,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     advancedFilterInputForRetrievingOptions: async (parent) => {
       return parent.advancedFilterInputForRetrievingOptions as AdvancedFilterInputType;
     },
-    edgeCollection: async (parent) => {
-      return parent.edgeCollection || "";
+    aggregation: async (parent) => {
+      return parent.aggregation || "";
     },
     defaultValue: async (parent, { value }) => {
       return value;
