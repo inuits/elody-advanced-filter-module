@@ -33,6 +33,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         itemTypes,
         label,
         isDisplayedByDefault,
+        showTimeForDateFilter,
         advancedFilterInputForRetrievingOptions,
         aggregation
       }
@@ -45,6 +46,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         itemTypes,
         label: label || "",
         isDisplayedByDefault: isDisplayedByDefault || false,
+        showTimeForDateFilter: showTimeForDateFilter,
         options: [],
         advancedFilterInputForRetrievingOptions,
         aggregation,
@@ -74,6 +76,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     isDisplayedByDefault: async (parent) => {
       return parent.isDisplayedByDefault || false;
+    },
+    showTimeForDateFilter: async (parent) => {
+      return parent.showTimeForDateFilter !== undefined ? parent.showTimeForDateFilter : true;
     },
     options: async (parent) => {
       return [

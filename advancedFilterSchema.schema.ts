@@ -41,6 +41,7 @@ export const advancedFilterSchema = gql`
     itemTypes: [String]
     label: String
     isDisplayedByDefault: Boolean!
+    showTimeForDateFilter: Boolean
     options: [DropdownOption!]!
     advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
     aggregation: String
@@ -70,6 +71,7 @@ export const advancedFilterSchema = gql`
       itemTypes: [String]
       label: String
       isDisplayedByDefault: Boolean
+      showTimeForDateFilter: Boolean
       advancedFilterInputForRetrievingOptions: AdvancedFilterInput
       aggregation: String
     ): AdvancedFilter!
