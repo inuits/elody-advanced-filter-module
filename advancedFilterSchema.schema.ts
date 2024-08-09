@@ -11,10 +11,17 @@ export const advancedFilterSchema = gql`
     type
     metadata_on_relation
   }
+  
+  enum AutocompleteSelectionOptions {
+    auto
+    checkboxlist
+    autocomplete
+  }
 
   input AdvancedFilterInput {
     lookup: LookupInput
     type: AdvancedFilterTypes!
+    selectionOption: AutocompleteSelectionOptions
     parent_key: String
     key: JSON
     value: JSON!
@@ -36,6 +43,7 @@ export const advancedFilterSchema = gql`
   type AdvancedFilter {
     lookup: LookupInputType
     type: AdvancedFilterTypes!
+    selectionOption: AutocompleteSelectionOptions
     parentKey: String
     key: JSON
     itemTypes: [String]
@@ -53,6 +61,7 @@ export const advancedFilterSchema = gql`
   type AdvancedFilterInputType {
     lookup: LookupInputType
     type: AdvancedFilterTypes!
+    selectionOption: AutocompleteSelectionOptions
     parent_key: String
     key: JSON
     value: JSON!
@@ -66,6 +75,7 @@ export const advancedFilterSchema = gql`
     advancedFilter(
       lookup: LookupInput
       type: AdvancedFilterTypes!
+      selectionOption: AutocompleteSelectionOptions
       parentKey: String
       key: JSON
       itemTypes: [String]
