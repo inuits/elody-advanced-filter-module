@@ -1,3 +1,4 @@
+// @ts-ignore
 import { gql } from "graphql-modules";
 
 export const advancedFilterSchema = gql`
@@ -11,7 +12,7 @@ export const advancedFilterSchema = gql`
     type
     metadata_on_relation
   }
-  
+
   enum AutocompleteSelectionOptions {
     auto
     checkboxlist
@@ -51,7 +52,7 @@ export const advancedFilterSchema = gql`
     isDisplayedByDefault: Boolean!
     showTimeForDateFilter: Boolean
     options: [DropdownOption!]!
-    advancedFilterInputForRetrievingOptions: AdvancedFilterInputType
+    advancedFilterInputForRetrievingOptions: [AdvancedFilterInputType!]
     aggregation: String
     defaultValue(value: JSON!): JSON!
     hidden(value: Boolean): Boolean!
@@ -82,7 +83,7 @@ export const advancedFilterSchema = gql`
       label: String
       isDisplayedByDefault: Boolean
       showTimeForDateFilter: Boolean
-      advancedFilterInputForRetrievingOptions: AdvancedFilterInput
+      advancedFilterInputForRetrievingOptions: [AdvancedFilterInput!]
       aggregation: String
     ): AdvancedFilter!
   }
@@ -108,6 +109,6 @@ export const advancedFilterSchema = gql`
   type Query {
     FilterMatcherMapping: FilterMatcherMap!
     EntityTypeFilters(type: String!): Entity!
-    FilterOptions(input: AdvancedFilterInput!, limit: Int!, entityType: String!): [DropdownOption!]!
+    FilterOptions(input: [AdvancedFilterInput!]!, limit: Int!, entityType: String!): [DropdownOption!]!
   }
 `;

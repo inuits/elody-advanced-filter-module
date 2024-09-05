@@ -1,6 +1,7 @@
 import { ContextValue } from "base-graphql";
 import {
-  AdvancedFilterInputType, AutocompleteSelectionOptions,
+  AdvancedFilterInputType,
+  AutocompleteSelectionOptions,
   DamsIcons,
   Entity,
   LookupInputType,
@@ -91,7 +92,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       ];
     },
     advancedFilterInputForRetrievingOptions: async (parent) => {
-      return parent.advancedFilterInputForRetrievingOptions as AdvancedFilterInputType;
+      return parent.advancedFilterInputForRetrievingOptions as AdvancedFilterInputType[];
     },
     aggregation: async (parent) => {
       return parent.aggregation || "";
