@@ -37,7 +37,10 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         isDisplayedByDefault,
         showTimeForDateFilter,
         advancedFilterInputForRetrievingOptions,
-        aggregation
+        aggregation,
+        min,
+        max,
+        unit
       }
     ) => {
       return {
@@ -55,6 +58,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         aggregation,
         defaultValue: "",
         hidden: false,
+        min,
+        max,
+        unit
       };
     },
   },
@@ -105,6 +111,15 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     tooltip: (parent, { value }) => {
       return value ? value : false;
+    },
+    min: (parent) => {
+      return parent?.min ?? 0;
+    },
+    max: (parent) => {
+      return parent?.max ?? 0;
+    },
+    unit: (parent) => {
+      return parent?.unit ?? "";
     },
   },
 };

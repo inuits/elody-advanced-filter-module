@@ -57,6 +57,9 @@ export const advancedFilterSchema = gql`
     defaultValue(value: JSON!): JSON!
     hidden(value: Boolean): Boolean!
     tooltip(value: Boolean): Boolean
+    min: Int
+    max: Int
+    unit: String
   }
 
   type AdvancedFilterInputType {
@@ -85,6 +88,9 @@ export const advancedFilterSchema = gql`
       showTimeForDateFilter: Boolean
       advancedFilterInputForRetrievingOptions: [AdvancedFilterInput!]
       aggregation: String
+      min: Int
+      max: Int
+      unit: String
     ): AdvancedFilter!
   }
 
