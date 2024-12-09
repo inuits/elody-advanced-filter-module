@@ -32,6 +32,7 @@ export const advancedFilterSchema = gql`
     provide_value_options_for_key: Boolean
     operator: String
     aggregation: String
+    returnIdAtIndex: Int
   }
 
   input LookupInput {
@@ -73,6 +74,7 @@ export const advancedFilterSchema = gql`
     item_types: [String]
     match_exact: Boolean
     aggregation: String
+    returnIdAtIndex: Int
   }
 
   type AdvancedFilters {
