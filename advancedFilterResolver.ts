@@ -103,7 +103,11 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     aggregation: async (parent) => {
       return parent.aggregation || "";
     },
-    defaultValue: async (parent, { value }) => {
+    defaultValue: async (parent, { value }, { dataSources }) => {
+      const sessionRegex = /^session-\$(.+)$/;
+      const match = value.match(sessionRegex);
+      if (match && match[1])
+        return await dataSources.CollectionAPI.getSessionInfo(match[1]);
       return value;
     },
     hidden: (parent, { value }) => {
