@@ -104,10 +104,12 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       return parent.aggregation || "";
     },
     defaultValue: async (parent, { value }, { dataSources }) => {
-      const sessionRegex = /^session-\$(.+)$/;
-      const match = value.match(sessionRegex);
-      if (match && match[1])
-        return await dataSources.CollectionAPI.getSessionInfo(match[1]);
+      if (value && typeof value === "string") {
+        const sessionRegex = /^session-\$(.+)$/;
+        const match = value.match(sessionRegex);
+        if (match && match[1])
+          return await dataSources.CollectionAPI.getSessionInfo(match[1]);
+      }
       return value;
     },
     hidden: (parent, { value }) => {
