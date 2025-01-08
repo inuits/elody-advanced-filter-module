@@ -40,7 +40,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         aggregation,
         min,
         max,
-        unit
+        unit,
+        context,
       }
     ) => {
       return {
@@ -57,10 +58,12 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         advancedFilterInputForRetrievingOptions,
         aggregation,
         defaultValue: "",
+        doNotOverrideValue: false,
         hidden: false,
         min,
         max,
-        unit
+        unit,
+        context,
       };
     },
   },
@@ -106,11 +109,31 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     defaultValue: async (parent, { value }, { dataSources }) => {
       if (value && typeof value === "string") {
         const sessionRegex = /^session-\$(.+)$/;
-        const match = value.match(sessionRegex);
+        let match = value.match(sessionRegex);
         if (match && match[1])
           return await dataSources.CollectionAPI.getSessionInfo(match[1]);
+
+        const relationsRegex = /^parent.relationValues-\$(.+)$/;
+        match =  value.match(relationsRegex);
+        if (match && match[1]) {
+          const relations = parent?.context || [""];
+          const defaultValueInfo = match[1].split("-");
+          if (defaultValueInfo[0] === "components") {
+            const relation = relations[0]?.components?.filter((relation: any) => relation.label === defaultValueInfo[defaultValueInfo.length-1]);
+            if (relation.length <= 0) return [];
+            const key = relation[0].key;
+            return [
+              key,
+              "entities/" + key,
+              "mediafiles/" + key,
+            ];
+          }
+        }
       }
       return value;
+    },
+    doNotOverrideDefaultValue: (parent, { value }) => {
+      return value !== undefined ? value : false;
     },
     hidden: (parent, { value }) => {
       return value ? value : false;

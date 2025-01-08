@@ -56,11 +56,13 @@ export const advancedFilterSchema = gql`
     advancedFilterInputForRetrievingOptions: [AdvancedFilterInputType!]
     aggregation: String
     defaultValue(value: JSON!): JSON!
+    doNotOverrideDefaultValue(value: Boolean): Boolean
     hidden(value: Boolean): Boolean!
     tooltip(value: Boolean): Boolean
     min: Int
     max: Int
     unit: String
+    context: JSON
   }
 
   type AdvancedFilterInputType {
@@ -75,6 +77,7 @@ export const advancedFilterSchema = gql`
     match_exact: Boolean
     aggregation: String
     returnIdAtIndex: Int
+    context: JSON
   }
 
   type AdvancedFilters {
@@ -93,6 +96,7 @@ export const advancedFilterSchema = gql`
       min: Int
       max: Int
       unit: String
+      context: JSON
     ): AdvancedFilter!
   }
 
