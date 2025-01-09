@@ -120,7 +120,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
           const defaultValueInfo = match[1].split("-");
           if (defaultValueInfo[0] === "components") {
             const relation = relations[0]?.components?.filter((relation: any) => relation.label === defaultValueInfo[defaultValueInfo.length-1]);
-            if (relation.length <= 0) return [];
+            if (relation.length <= 0) return [""];
             const key = relation[0].key;
             return [
               key,
