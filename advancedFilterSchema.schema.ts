@@ -30,6 +30,7 @@ export const advancedFilterSchema = gql`
     item_types: [String]
     match_exact: Boolean
     provide_value_options_for_key: Boolean
+    inner_exact_matches: JSON
     operator: String
     aggregation: String
     returnIdAtIndex: Int
@@ -75,6 +76,7 @@ export const advancedFilterSchema = gql`
     metadata_key_as_label: String
     item_types: [String]
     match_exact: Boolean
+    inner_exact_matches: JSON
     aggregation: String
     returnIdAtIndex: Int
     context: JSON
