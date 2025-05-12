@@ -27,6 +27,7 @@ export const advancedFilterSchema = gql`
     key: JSON
     value: JSON!
     metadata_key_as_label: String
+    distinct_by: String
     item_types: [String]
     match_exact: Boolean
     provide_value_options_for_key: Boolean
@@ -41,6 +42,16 @@ export const advancedFilterSchema = gql`
     local_field: String!
     foreign_field: String!
     as: String!
+  }
+
+  type FilterOptionsMappingType {
+    label: String
+    value: String
+  }
+
+  input FilterOptionsMappingInput {
+    label: String
+    value: String
   }
 
   type AdvancedFilter {
@@ -64,6 +75,11 @@ export const advancedFilterSchema = gql`
     max: Int
     unit: String
     context: JSON
+    matchExact: Boolean
+    distinctBy: String
+    filterOptionsMapping: FilterOptionsMappingType
+    useNewWayToFetchOptions: Boolean
+    minDropdownSearchCharacters(value: Int): Int
   }
 
   type AdvancedFilterInputType {
@@ -79,6 +95,7 @@ export const advancedFilterSchema = gql`
     inner_exact_matches: JSON
     aggregation: String
     returnIdAtIndex: Int
+    distinct_by: String
     context: JSON
   }
 
@@ -95,10 +112,15 @@ export const advancedFilterSchema = gql`
       showTimeForDateFilter: Boolean
       advancedFilterInputForRetrievingOptions: [AdvancedFilterInput!]
       aggregation: String
+      matchExact: Boolean
       min: Int
       max: Int
       unit: String
       context: JSON
+      useNewWayToFetchOptions: Boolean
+      minDropdownSearchCharacters: Int
+      distinctBy: String
+      filterOptionsMapping: FilterOptionsMappingInput
     ): AdvancedFilter!
   }
 

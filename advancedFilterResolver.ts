@@ -4,6 +4,7 @@ import {
   AutocompleteSelectionOptions,
   DamsIcons,
   Entity,
+  FilterOptionsMappingType,
   LookupInputType,
   Resolvers,
 } from "../../generated-types/type-defs";
@@ -42,6 +43,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         max,
         unit,
         context,
+        useNewWayToFetchOptions,
+        matchExact,
+        filterOptionsMapping,
       }
     ) => {
       return {
@@ -64,6 +68,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         max,
         unit,
         context,
+        matchExact,
+        useNewWayToFetchOptions,
+        filterOptionsMapping
       };
     },
   },
@@ -151,6 +158,15 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     unit: (parent) => {
       return parent?.unit ?? "";
+    },
+    minDropdownSearchCharacters: (parent, { value }) => {
+      return value ?? 3;
+    },
+    useNewWayToFetchOptions: (parent) => {
+      return parent.useNewWayToFetchOptions ?? false;
+    },
+    filterOptionsMapping: (parent) => {
+      return parent.filterOptionsMapping as FilterOptionsMappingType;
     },
   },
 };
