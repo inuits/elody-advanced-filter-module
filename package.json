@@ -22,6 +22,7 @@
   },
   "publishConfig": {
     "main": "./dist/dams/inuits-dams-advanced-filter-module/advancedFilterModule.js",
+    "types": "./types/dams/inuits-dams-advanced-filter-module/advancedFilterModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
