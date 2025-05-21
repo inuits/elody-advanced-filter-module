@@ -44,6 +44,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         unit,
         context,
         useNewWayToFetchOptions,
+        entityType,
         matchExact,
         filterOptionsMapping,
       }
@@ -70,6 +71,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         context,
         matchExact,
         useNewWayToFetchOptions,
+        entityType,
         filterOptionsMapping
       };
     },
@@ -164,6 +166,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     useNewWayToFetchOptions: (parent) => {
       return parent.useNewWayToFetchOptions ?? false;
+    },
+    entityType: (parent) => {
+      return parent.entityType ?? "";
     },
     filterOptionsMapping: (parent) => {
       return parent.filterOptionsMapping as FilterOptionsMappingType;

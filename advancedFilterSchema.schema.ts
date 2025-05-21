@@ -80,6 +80,7 @@ export const advancedFilterSchema = gql`
     metadataKeyAsLabel: String
     filterOptionsMapping: FilterOptionsMappingType
     useNewWayToFetchOptions: Boolean
+    entityType: String
     minDropdownSearchCharacters(value: Int): Int
   }
 
@@ -119,6 +120,7 @@ export const advancedFilterSchema = gql`
       unit: String
       context: JSON
       useNewWayToFetchOptions: Boolean
+      entityType: String
       minDropdownSearchCharacters: Int
       distinctBy: String
       metadataKeyAsLabel: String
