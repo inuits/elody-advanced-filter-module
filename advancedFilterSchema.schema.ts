@@ -18,6 +18,11 @@ export const advancedFilterSchema = gql`
     checkboxlist
     autocomplete
   }
+  
+  enum Operator {
+      or
+      and
+  }
 
   input AdvancedFilterInput {
     lookup: LookupInput
@@ -32,7 +37,7 @@ export const advancedFilterSchema = gql`
     match_exact: Boolean
     provide_value_options_for_key: Boolean
     inner_exact_matches: JSON
-    operator: String
+    operator: Operator
     aggregation: String
     returnIdAtIndex: Int
   }
@@ -99,6 +104,7 @@ export const advancedFilterSchema = gql`
     returnIdAtIndex: Int
     distinct_by: String
     context: JSON
+      operator: Operator
   }
 
   type AdvancedFilters {
