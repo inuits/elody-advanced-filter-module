@@ -109,8 +109,28 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         { icon: DamsIcons.NoIcon, label: "IotDevice", value: "IotDevice" },
       ];
     },
-    advancedFilterInputForRetrievingOptions: async (parent) => {
-      return parent.advancedFilterInputForRetrievingOptions as AdvancedFilterInputType[];
+    advancedFilterInputForRetrievingOptions: async (parent, _, { dataSources }) => {
+      const processFilterItem = async (item: AdvancedFilterInputType) => {
+        const { value, ...rest } = item;
+
+        if (typeof value !== "string") {
+          return { ...rest, value };
+        }
+
+        const sessionRegex = /^session-\$(.+)$/;
+        const match = value.match(sessionRegex);
+
+        if (!match?.[1]) {
+          return { ...rest, value };
+        }
+
+        const sessionValue = await dataSources.CollectionAPI.getSessionInfo(match[1]);
+        return { ...rest, value: sessionValue };
+      };
+
+      const originalFilters = parent.advancedFilterInputForRetrievingOptions || [];
+      const processedFilters = await Promise.all(originalFilters.map(processFilterItem));
+      return processedFilters as AdvancedFilterInputType[];
     },
     aggregation: async (parent) => {
       return parent.aggregation || "";
