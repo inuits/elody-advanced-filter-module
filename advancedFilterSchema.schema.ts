@@ -11,7 +11,6 @@ export const advancedFilterSchema = gql`
     boolean
     type
     metadata_on_relation
-    geo
   }
 
   enum AutocompleteSelectionOptions {
