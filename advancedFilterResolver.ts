@@ -7,6 +7,7 @@ import {
   FilterOptionsMappingType,
   LookupInputType,
   Resolvers,
+  Operator
 } from "../../generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
@@ -47,6 +48,7 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         entityType,
         matchExact,
         filterOptionsMapping,
+        operator
       }
     ) => {
       return {
@@ -72,7 +74,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         matchExact,
         useNewWayToFetchOptions,
         entityType,
-        filterOptionsMapping
+        filterOptionsMapping,
+        operator
       };
     },
   },
@@ -192,6 +195,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     filterOptionsMapping: (parent) => {
       return parent.filterOptionsMapping as FilterOptionsMappingType;
+    },
+    operator: (parent) => {
+      return parent.operator as Operator;
     },
   },
 };
