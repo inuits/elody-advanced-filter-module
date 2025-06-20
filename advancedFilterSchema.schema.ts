@@ -146,6 +146,7 @@ export const advancedFilterSchema = gql`
     boolean: [String!]!
     type: [String!]!
     metadata_on_relation: [String!]!
+    geo: [String!]!
   }
 
   type LookupInputType {
