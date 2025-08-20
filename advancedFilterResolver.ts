@@ -48,7 +48,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         entityType,
         matchExact,
         filterOptionsMapping,
-        operator
+        operator,
+        facets
       }
     ) => {
       return {
@@ -75,7 +76,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         useNewWayToFetchOptions,
         entityType,
         filterOptionsMapping,
-        operator
+        operator,
+        facets
       };
     },
   },
@@ -198,6 +200,9 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     operator: (parent) => {
       return parent.operator as Operator;
+    },
+    facets: (parent) => {
+      return parent.facets || [];
     },
   },
 };

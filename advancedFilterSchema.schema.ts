@@ -41,6 +41,7 @@ export const advancedFilterSchema = gql`
     operator: Operator
     aggregation: String
     returnIdAtIndex: Int
+    facets: [FacetInputInput!]
   }
 
   input LookupInput {
@@ -88,7 +89,24 @@ export const advancedFilterSchema = gql`
     useNewWayToFetchOptions: Boolean
     entityType: String
     minDropdownSearchCharacters(value: Int): Int
-      operator: Operator
+    operator: Operator
+    facets: [FacetInputType!]
+  }
+
+  type FacetInputType {
+    key: String
+    type: AdvancedFilterTypes
+    value: JSON
+    lookups: [LookupInputType!]
+    facets: [FacetInputType!]
+  }
+
+  input FacetInputInput {
+    key: String
+    type: AdvancedFilterTypes
+    value: JSON
+    lookups: [LookupInput!]
+    facets: [FacetInputInput!]
   }
 
   type AdvancedFilterInputType {
@@ -106,7 +124,7 @@ export const advancedFilterSchema = gql`
     returnIdAtIndex: Int
     distinct_by: String
     context: JSON
-      operator: Operator
+    operator: Operator
   }
 
   type AdvancedFilters {
@@ -133,7 +151,8 @@ export const advancedFilterSchema = gql`
       distinctBy: String
       metadataKeyAsLabel: String
       filterOptionsMapping: FilterOptionsMappingInput
-        operator: Operator
+      operator: Operator
+      facets: [FacetInputInput!]
     ): AdvancedFilter!
   }
 
