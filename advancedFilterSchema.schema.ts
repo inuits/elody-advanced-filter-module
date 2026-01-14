@@ -42,6 +42,7 @@ export const advancedFilterSchema = gql`
     aggregation: String
     returnIdAtIndex: Int
     facets: [FacetInputInput!]
+    includeDefaultValuesFromIntialValues: [String]
   }
 
   input LookupInput {
@@ -91,6 +92,7 @@ export const advancedFilterSchema = gql`
     minDropdownSearchCharacters(value: Int): Int
     operator: Operator
     facets: [FacetInputType!]
+    includeDefaultValuesFromIntialValues: [String]
   }
 
   type FacetInputType {
