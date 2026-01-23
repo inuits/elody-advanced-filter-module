@@ -87,7 +87,7 @@ export const advancedFilterSchema = gql`
     distinctBy: String
     metadataKeyAsLabel: String
     filterOptionsMapping: FilterOptionsMappingType
-    useNewWayToFetchOptions: Boolean
+    useOldWayToFetchOptions: Boolean
     entityType: String
     minDropdownSearchCharacters(value: Int): Int
     operator: Operator
@@ -147,7 +147,7 @@ export const advancedFilterSchema = gql`
       max: Int
       unit: String
       context: JSON
-      useNewWayToFetchOptions: Boolean
+      useOldWayToFetchOptions: Boolean
       entityType: String
       minDropdownSearchCharacters: Int
       distinctBy: String
