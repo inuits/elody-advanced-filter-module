@@ -51,6 +51,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         operator,
         facets,
         includeDefaultValuesFromIntialValues,
+        defaultMatcher,
+        allowedMatchers,
       }
     ) => {
       return {
@@ -80,6 +82,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
         operator,
         facets,
         includeDefaultValuesFromIntialValues,
+        defaultMatcher,
+        allowedMatchers,
       };
     },
   },
@@ -208,6 +212,12 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
     },
     includeDefaultValuesFromIntialValues: (parent) => {
       return parent.includeDefaultValuesFromIntialValues || [];
-    }
+    },
+    defaultMatcher: (parent) => {
+      return parent.defaultMatcher || null;
+    },
+    allowedMatchers: (parent, rest) => {
+      return parent.allowedMatchers || null;
+    },
   },
 };

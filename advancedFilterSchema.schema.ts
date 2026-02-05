@@ -93,6 +93,8 @@ export const advancedFilterSchema = gql`
     operator: Operator
     facets: [FacetInputType!]
     includeDefaultValuesFromIntialValues: [String]
+    defaultMatcher: Matchers
+    allowedMatchers: [Matchers]
   }
 
   type FacetInputType {
