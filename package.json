@@ -1,6 +1,6 @@
 {
   "name": "advanced-filter-module",
-  "version": "0.0.93",
+  "version": "0.0.94",
   "license": "MIT",
   "main": "./advancedFilterModule.ts",
   "scripts": {
@@ -18,8 +18,8 @@
     "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "main": "./dist/advancedFiltersModule.js",
-    "types": "./types/advancedFiltersModule.d.ts",
+    "main": "./dist/advancedFilterModule.js",
+    "types": "./types/advancedFilterModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
