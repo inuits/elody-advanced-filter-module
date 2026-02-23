@@ -7,7 +7,7 @@ import {
   FilterOptionsMappingType,
   LookupInputType,
   Resolvers,
-  Operator
+  Operator, DropdownOption
 } from "./generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
@@ -22,7 +22,8 @@ export const advancedFilterResolver: Resolvers<ContextValue> = {
       } as Entity;
     },
     FilterOptions: async (_source, { input, limit, entityType }, { dataSources }) => {
-      return await dataSources.CollectionAPI.GetFilterOptions(input, limit, entityType);
+      const options = await dataSources.CollectionAPI.GetFilterOptions(input, limit, entityType);
+      return options as unknown as DropdownOption[];
     },
   },
   AdvancedFilters: {
