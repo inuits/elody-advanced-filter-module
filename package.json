@@ -1,28 +1,24 @@
 {
   "name": "advanced-filter-module",
-  "version": "0.0.92",
+  "version": "0.0.93",
   "license": "MIT",
   "main": "./advancedFilterModule.ts",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "@types/node": "^18.11.14",
-    "graphql-modules": "^2.1.0",
-    "base-graphql": "*",
     "@graphql-codegen/add": "^4.0.1",
     "@graphql-codegen/cli": "^4.0.1",
-    "@graphql-codegen/graphql-modules-preset": "^4.0.0",
-    "@graphql-codegen/typed-document-node": "^4.0.1",
-    "@graphql-codegen/typescript": "^4.0.0",
-    "@graphql-codegen/typescript-operations": "^4.0.0",
-    "@graphql-codegen/typescript-resolvers": "^4.0.0",
-    "typescript": "^5.0.0",
-    "graphql": "^16.6.0"
+    "@graphql-codegen/graphql-modules-preset": "^4.0.11",
+    "@types/node": "^18.11.14",
+    "base-graphql": "*",
+    "graphql": "^16.9.0",
+    "graphql-modules": "^2.1.0",
+    "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "main": "./dist/dams/inuits-dams-advanced-filter-module/advancedFilterModule.js",
-    "types": "./types/dams/inuits-dams-advanced-filter-module/advancedFilterModule.d.ts",
+    "main": "./dist/mediafileModule.js",
+    "types": "./types/mediafileModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
