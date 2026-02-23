@@ -17,8 +17,8 @@
     "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "main": "./dist/mediafileModule.js",
-    "types": "./types/mediafileModule.d.ts",
+    "main": "./dist/advancedFiltersModule.js",
+    "types": "./types/advancedFiltersModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
