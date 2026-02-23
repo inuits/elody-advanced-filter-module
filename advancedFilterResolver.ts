@@ -8,7 +8,7 @@ import {
   LookupInputType,
   Resolvers,
   Operator
-} from "../../generated-types/type-defs";
+} from "./generated-types/type-defs";
 
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   Query: {
