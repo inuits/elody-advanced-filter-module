@@ -160,15 +160,9 @@ export const advancedFilterSchema = gql`
     ): AdvancedFilter!
   }
 
-  type FilterMatcherMap {
-    id: [String!]!
-    text: [String!]!
-    date: [String!]!
-    number: [String!]!
-    selection: [String!]!
-    boolean: [String!]!
-    type: [String!]!
-    metadata_on_relation: [String!]!
+  type FilterMatchers {
+    key: String!
+    matchers: [String!]!
   }
 
   type LookupInputType {
@@ -179,7 +173,7 @@ export const advancedFilterSchema = gql`
   }
 
   type Query {
-    FilterMatcherMapping: FilterMatcherMap!
+    FilterMatcherMapping(keys: [String!]): [FilterMatchers!]!
     EntityTypeFilters(type: String!): Entity!
     FilterOptions(input: [AdvancedFilterInput!]!, limit: Int!, entityType: String!): [DropdownOption!]!
   }
