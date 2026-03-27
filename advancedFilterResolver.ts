@@ -13,7 +13,7 @@ import {
 export const advancedFilterResolver: Resolvers<ContextValue> = {
   Query: {
     FilterMatcherMapping: async (_source, {}, { dataSources }) => {
-      return await dataSources.CollectionAPI.getFilterMatcherMapping();
+      return {} as any;
     },
     EntityTypeFilters: async (_source, { type }) => {
       return {
